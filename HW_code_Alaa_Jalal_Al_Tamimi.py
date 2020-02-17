@@ -192,3 +192,26 @@ def Result(Repeted_word1, Repeted_word2):
 # End of Function Area
 
 
+# Start of Main Program
+
+user_wellcome()
+
+input_text1=data_entered()                  # entering user options
+input_text2=data_entered()
+
+Prepositions= Preposition()                # find the Prepositions and irrelevant_words
+irrelevant_words=irrelevant_word()
+
+word_list1 = text_cleaning(input_text1)   # Cleaning the text from Prepositions and irrelevant_words
+word_list2 = text_cleaning(input_text2)
+    
+word_histogram1 = count_iterative(word_list1)     # Find iterative words in text
+word_histogram2 = count_iterative(word_list2)   
+
+Repeted_word1 = mostly_used_word(word_histogram1) # Find the repeted words
+Repeted_word2 = mostly_used_word(word_histogram2)
+# Number_of_repeted_word=0     # if you put this line here define Number_of_repeted_word as global in line 95 and remove line 88
+Result(Repeted_word1, Repeted_word2)
+
+
+# End of Main Program
