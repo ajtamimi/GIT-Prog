@@ -96,4 +96,99 @@ Airport in January 2018, although all 162 passengers and six crew members were
 unharmed.
 """.lower()
 
+# Start of Function Area
+
+def user_wellcome():
+    print("\n \n \n \n \n \n \n \n \n \n \n \n \n \n ")
+    print("There are three stored paragraphs in the program:\n")
+    print("Number 1 is about Rabbit and turtle,\n")
+    print("Number 2 and 3 are about Pegasus plane that skided in Istanbul in 2020,\n")
+    print("Number 4 for your new paragraph.\n")
+
+
+def data_entered():
+    user_input= int(input ("Please enter paragraph number: 1 or 2 or 3 or 4: \n"))
+    
+    if(user_input==1):
+       input_text= Paragraph1
+    elif (user_input==2):
+        input_text= Paragraph2
+    elif (user_input==3):
+        input_text= Paragraph3
+    else:
+        input_text= (input ("Please enter the first paragraph:")).lower()
+    return input_text   
+
+
+def Preposition():
+    p = {" of "," with "," at "," from "," into "," during "," including "," until "," against "," among "," throughout "," despite "," towards "," upon "," concerning "," to "," in "," for "," on "," by "," about "," like "," through "," over "," before "," between "," after "," since "," without "," under "," within "," along "," following "," across "," behind "," beyond "," plus "," except "," but "," up "," out "," around "," down "," off "," above "," near "}
+    return p
+
+
+def irrelevant_word():
+    irr =  {". ", ", " , "\n", " a ",   " ourselves ", " thought " ," hers ",  " between ",  " yourself ",  " but ",  " again ",  " there ",  " about ",  " once ",  " during ",  " out ",  " very ",  " having ",  " with ",  " they ",  " own ",  " an ",  " be ",  " some ",  " for ",  " do ",  " its ",  " yours ",  " such ",  " into ",  " of ",  " most ",  " itself ",  " other ",  " off ",  " is ",  " s ",  " am ",  " or ",  " who ",  " as ",  " from ",  " him ",  " each ", " the",  " themselves ",  " until ",  " below ",  " are ",  " we ",  " these ",  " your ",  " his ",  " through ",  " don ",  " nor ",  " me ",  " were ",  " her ",  " more ",  " himself ",  " this ",  " down ",  " should ",  " our ",  " their ",  " while ",  " above ",  " both ",  " up ",  " to ",  " ours ",  " had ",  " she ",  " all ",  " no ",  " when ",  " at ",  " any ",  " before ",  " them ",  " same ",  " and ",  " been ",  " have ",  " in ",  " will ",  " on ",  " does ",  " yourselves ",  " then ",  " that ",  " because ",  " what ",  " over ",  " why ",  " so ",  " can ",  " did ",  " not ",  " now ",  " under ", " he ",  " you ",  " herself ",  " has ",  " just ",  " where ",  " too ",  " only ",  " myself ",  " which ",  " those ",  " i ",  " after ",  " few ",  " whom ",  " t ",  " being ",  " if ",  " theirs ",  " my ",  " against ",  " a ",  " by ",  " doing ",  " it ",  " how ",  " further ",  " was ",  " here ",  " than"}
+    return irr
+
+
+def text_cleaning(input_text):
+    for prep in Prepositions:                       # Remove Prepositions
+       input_text = input_text.replace(prep, " ")
+    for iw in irrelevant_words:                     # Remove irrelevant_words
+       input_text = input_text.replace(iw, " ")
+       word_list = input_text.split(" ")            # Convert text to list of unique words
+    return word_list
+
+ 
+def count_iterative(word_list):
+    word_histogram = {} # empty dictionary
+    for word in word_list:    # adding dictionary keys
+        if word not in word_histogram.keys():
+            word_histogram[word] = 1
+        else:
+            word_histogram[word] = word_histogram[word] + 1
+    word_histogram.pop("")   # remove empty keys
+    return word_histogram
+     
+
+def mostly_used_word(word_hist):
+    import operator 
+    Repeted_word=set()    # empty set
+    i=0
+    while( i<6) :       # 6 Is the number of mostly used word in paragraph.
+        Word= max(word_hist.items(), key=operator.itemgetter(1))
+        word_hist.pop(Word[0])
+        Repeted_word.add(Word[0])
+        i+=1    
+    return Repeted_word
+
+def Result(Repeted_word1, Repeted_word2):
+    Number_of_repeted_word=0 # see global option note
+    
+    def Paragraph_maping(Repeted_word1, Repeted_word2): 
+        for word in Repeted_word1:
+            if (word in Repeted_word2):
+                print(word)
+                nonlocal Number_of_repeted_word
+               # global Number_of_repeted_word
+                Number_of_repeted_word+=1
+        #return Number_of_repeted_word
+    
+    print ("\n******************************************************")
+    print ("The repeted words in the first paragraph are: ")
+    print (Repeted_word1)
+    print ("\nThe repeted words in the second paragraph are: ")
+    print (Repeted_word2)
+    print ("\nThe common repeted words in the two paragraphs are: \n")
+  
+    Paragraph_maping(Repeted_word1, Repeted_word2)  # inner function
+           
+    print ("\nNumber of repeted words are: " , Number_of_repeted_word)
+    if (Number_of_repeted_word>2):   # number of overlap words
+        print ("\n The two paragraphs are relevant.")
+    else:
+       print ("\nThe two paragraphs are not relevant.")
+    print ("******************************************************")
+
+# End of Function Area
+
 
