@@ -1,9 +1,3 @@
-"""
-
-@author: ajtamimi
-
-"""
-
 '''
 
 Done by: Eng. Alaa Jalal Al Tamimi
